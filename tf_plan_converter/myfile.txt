@@ -1,0 +1,9 @@
+
+Security group:default1 (create)
+Regola              Direction           Source Cidrs        From Port           To Port             Protocol            
+                                                                                                    
+default1_egress_1   egress              10.0.0.0/8          0                   0                   ALL                 
+default1_ingress_1  ingress             10.0.0.0/8          443                 443                 tcp                 
+default1_ingress_2  ingress             10.0.0.0/8          8080                8080                tcp                 
+
+

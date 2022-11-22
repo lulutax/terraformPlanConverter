@@ -1,0 +1,5 @@
+{% for key, value in resource.items() %}
+Security group:{{ key }} ({{ value[0].action| join(" ") }})
+{{ "%-20s"| format("Regola") }}{{ "%-20s"| format("Direction") }}{{ "%-20s"| format("Source Cidrs") }}{{ "%-20s"| format("From Port") }}{{ "%-20s"| format("To Port") }}{{ "%-20s"| format("Protocol") }}{% for r in value %}
+{{ "%-20s"| format(r.name) }}{{ "%-20s"| format(r.type) }}{% if r.cidr_blocks is not none %}{% for cidr in r.cidr_blocks %}{{ "%-20s"| format(cidr) }}{% endfor %}{% else %} {{"%-20s"|format("--EMPTY--") }}{% endif %}{% if r.from_port  == 0 %}{{ "%-20s"|format("ANY") }}{% else %}{{ "%-20s"| format(r.from_port) }}{% endif %}{% if r.to_port  == 0 %}{{ "%-20s"| format("ANY") }}{% else %}{{ "%-20s"| format(r.to_port) }}{% endif %}{% if r.protocol  == "-1" %}{{ "%-20s"|format("ALL") }}{% else %}{{ "%-20s"| format(r.protocol) }}{% endif %}{% endfor %}
+{% endfor %}
